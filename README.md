@@ -13,6 +13,8 @@ In this application, the user is prompted for which city they'd like to receive 
 - Trip Duration
 - User Information (type of customer, gender, birth year)
 
+This program also makes use of custom exception classes to ensure that user input is regulated to match acceptable inputs.
+
 ### Files used
 - chicago.csv
 - new_york_city.csv
