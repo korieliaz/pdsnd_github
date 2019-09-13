@@ -2,18 +2,36 @@ import time
 import pandas as pd
 import numpy as np
 
+"""
+The base Exception class allows for derivation and creation of the InvalidCityError, InvalidMonthError, and InvalidDayError classes. These classes allow for a 
+rigorous try-except block that will ensure that the user cannot submit an input that is not within the accepted cities, months, or days.
+"""
 class Error(Exception):
     pass
 
+"""
+This class ensures that no invalid city can be passed in. See CITY_DATA for a dictionary of acceptable cities.
+"""
 class InvalidCityError(Error):
     pass
 
+"""
+This class ensures that no invalid month can be passed in. See months for a list of acceptable months.
+"""
 class InvalidMonthError(Error):
     pass
 
+"""
+This class ensures that no invalid day can be passed in. See days for a list of acceptable days of the week.
+"""
 class InvalidDayError(Error):
     pass
 
+"""
+CITY_DATA = a dictionary of acceptable cities that map to their corresponding .csv files
+months    = a list of acceptable months (note that this program only manages months between January and June)
+days      = a list of acceptable days of the week
+"""
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -22,6 +40,15 @@ months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
 def get_input():
+    """
+    Asks user to specify a city, month, and day to analyze.
+    Utilizes a try-except block to ensure that the user is restricted to inputs determined by the custom exception classes listed above.
+
+    Returns:
+        (str) city - name of the city to analyze
+        (str) month - name of the month to filter by, or "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+    """
     while True:
         try:
             city = input("Please input the name of a city! You can choose from Chicago, New York City, or Washington: ").lower()
